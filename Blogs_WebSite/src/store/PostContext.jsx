@@ -28,14 +28,14 @@ const PostContext = createContext({
 
 export const PostContextProvider = (props) => {
 
-    const [addPost, setAddPost] = useState(DUMMY || []);
+    const [addPost, setAddPost] = useState([]);
 
 
 
     const handlerOnAddPost = (title, imgUrl, description) => {
         console.log(title, imgUrl, description);
         const latestPost = [...addPost, {
-
+            id: Math.random(),
             title: title,
             imgUrl: imgUrl,
             description: description,
@@ -50,7 +50,7 @@ export const PostContextProvider = (props) => {
 
     const handlerOnRemovePost = (image) => {
         const deletePost = addPost.filter((brr) => {
-            return brr.title !== image;
+            return brr.id !== image;
         })
         console.log('post is deleted', image)
         setAddPost(deletePost);
